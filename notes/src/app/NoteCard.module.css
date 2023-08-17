@@ -1,0 +1,6 @@
+.title {
+  /* If a title has a really long word in it, use ellipsis to cut it off */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}

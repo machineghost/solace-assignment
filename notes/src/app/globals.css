@@ -1,0 +1,6 @@
+/* Keep all of our Material UI Cards the same size, unless otherwise specified */
+.MuiCard-root {
+  min-width: 350px;
+  max-width: 350px;
+  padding: 2em;
+}

@@ -1,0 +1,16 @@
+.form {
+  max-width: 500px;
+}
+
+.spaceBelow {
+  margin-bottom: 1em;
+}
+
+.error {
+  color: red;
+}
+
+.textLabelBox {
+  display: flex;
+  justify-content: space-between;
+}
