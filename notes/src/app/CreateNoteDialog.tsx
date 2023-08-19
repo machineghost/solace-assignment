@@ -1,4 +1,4 @@
-import { NewNote, Note } from '@/typings';
+import { NewNote, Note } from '../types';
 import {
   Button,
   Dialog,
@@ -37,13 +37,13 @@ const validateTitle = (title: string) => {
 interface NoteFormProps {
   closeDialog: () => void;
   createNote: (note: NewNote) => void;
-  isVisible: boolean;
 }
 
 const initialNoteState = { title: '', text: '' };
 
 // Helper hook for determining whether we're in mobile (<=500px) view or not
 const useIsMobile = () => {
+  if (typeof window === 'undefined') return;
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const useIsMobile = () => {
   return width <= 500;
 };
 
-const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
+const NoteDialog = ({ closeDialog, createNote }: NoteFormProps) => {
   // Track when the user has interacted with the form elements, so that we don't show error messages
   // before they've even started using them
   const [shouldValidate, setShouldValidate] = useState({
@@ -65,11 +65,6 @@ const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
   });
   const [note, setNote] = useState(initialNoteState);
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    // When the dialog is closed, reset the note state
-    if (!isVisible) setNote(initialNoteState);
-  }, [isVisible]);
 
   const startValidatingText = () =>
     setShouldValidate({ ...shouldValidate, text: true });
@@ -119,8 +114,8 @@ const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
 
   return (
     // Let the dialog fill the screen on mobile, but not on larger screens
-    <Dialog fullScreen={isMobile} open={isVisible} onClose={closeDialog}>
-      <DialogTitle>Create Note</DialogTitle>
+    <Dialog fullScreen={isMobile} open={true} onClose={closeDialog}>
+      <DialogTitle>Create a New Note</DialogTitle>
       <form className={styles.form}>
         <DialogContent>
           <DialogContentText className={styles.spaceBelow}>
@@ -130,6 +125,7 @@ const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
             <TextField
               id="title"
               aria-describedby="title"
+              aria-label="title"
               error={!!displayedErrors.title}
               onBlur={startValidatingTitle}
               onKeyUp={handleTitleKeyUp}
@@ -142,6 +138,7 @@ const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
             <TextField
               id="text"
               aria-describedby="text"
+              aria-label="text"
               error={!!displayedErrors.text}
               multiline
               // If the user has focused the textarea and left, we can show validationerrors
@@ -180,4 +177,4 @@ const NoteForm = ({ closeDialog, createNote, isVisible }: NoteFormProps) => {
   );
 };
 
-export default NoteForm;
+export default NoteDialog;

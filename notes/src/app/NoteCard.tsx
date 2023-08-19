@@ -1,4 +1,4 @@
-import { Note } from '@/typings';
+import { Note } from '../types.d';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -26,7 +26,10 @@ export default function NoteCard({ deleteNote, note }: NoteCardProps) {
       <CardHeader
         title={
           <div className={styles.title}>
-            {note.title} <DeleteIcon onClick={deleteThisNote} />
+            {note.title}{' '}
+            <span onClick={deleteThisNote}>
+              <DeleteIcon />
+            </span>
           </div>
         }
         action={<span>{formatDate(note.createdAt)}</span>}

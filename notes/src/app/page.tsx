@@ -1,10 +1,13 @@
-import { Note } from '@/typings';
+import { Note } from '../types';
 import NotesPage from './NotesPage';
 import { Providers } from './Providers';
 
-const initialNotes: Note[] = [
+// Exported for use in testing
+export const initialNotes: Note[] = [
   {
-    id: crypto.randomUUID(),
+    // NOTE: Using Math.random since crypto librarymay not be available, and using a whole
+    //       uuid-generation dependency felt like overkill for this simple assignment
+    id: Math.random() + '',
     title: `Nancy's Visit Notes`,
     text:
       `Per your doctor's instructions, take two green Placebium pills every morning ` +
