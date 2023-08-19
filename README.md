@@ -30,6 +30,6 @@ However, the application does use local history to simulate an environment close
 * Pagination - the instructions mentioned "indexing", so I created a six-notes-per-page pagination scheme
 * While I didn't fully test for a 100% responsive design, the design overall should be responsive and work reasonably well for all screen sizes.
 
-**Questions, Comments, Concerns**
+## Questions, Comments, Concerns
 
 If anything doesn't work, or if you have any questions about my code, please let me know.
