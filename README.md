@@ -13,6 +13,8 @@ Clone and install as above, then run `npm run test`.
 
 ## Technology Stack
 
+**Language:** Typescript - I used a lot of inferred types, but if you want to generate static type files just run `npm run build-types`.
+
 **Server:** None - it wasn't needed for this assignment.
 However, the application does use local history to simulate an environment closer to a real (database-using) one.
 
